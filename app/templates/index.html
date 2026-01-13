@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Performance Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+</head>
+<body>
+    <header class="header">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+        <h1>Student Performance Prediction</h1>
+    </header>
+
+    <main class="container">
+        <!-- Form Section -->
+        <section class="card form-section">
+            <h2>Enter Student Details</h2>
+            <form action="/" method="post">
+                <div class="grid">
+                    <label>Study Hours: <input type="number" name="study_hours" required></label>
+                    <label>Attendance (%): <input type="number" name="attendance" required></label>
+                    <label>Previous Score: <input type="number" name="previous_score" required></label>
+                    <label>Sleep Hours: <input type="number" name="sleep_hours" required></label>
+
+                    <label>Internet Access: 
+                        <select name="internet_access">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </label>
+                    <label>Extra Classes: 
+                        <select name="extra_classes">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </label>
+                    <label>Parent Education:
+                        <select name="parent_education">
+                            <option value="1">Primary</option>
+                            <option value="2">Secondary</option>
+                            <option value="3">Graduate</option>
+                            <option value="4">Postgraduate</option>
+                        </select>
+                    </label>
+                    <label>Family Income:
+                        <select name="family_income">
+                            <option value="1">Low</option>
+                            <option value="2">Medium</option>
+                            <option value="3">High</option>
+                            <option value="4">Very High</option>
+                        </select>
+                    </label>
+
+                    <label>Screen Time (hrs): <input type="number" name="screen_time" required></label>
+                    <label>Health Status:
+                        <select name="health_status">
+                            <option value="1">Poor</option>
+                            <option value="2">Average</option>
+                            <option value="3">Good</option>
+                            <option value="4">Excellent</option>
+                        </select>
+                    </label>
+                    <label>Motivation Level:
+                        <select name="motivation_level">
+                            <option value="1">Low</option>
+                            <option value="2">Medium</option>
+                            <option value="3">High</option>
+                            <option value="4">Very High</option>
+                        </select>
+                    </label>
+                    <label>School Support: 
+                        <select name="school_support">
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </label>
+
+                    <label>Travel Time (hrs): <input type="number" name="travel_time" required></label>
+                    <label>Failures: <input type="number" name="failures" required></label>
+                    <label>Participation:
+                        <select name="participation">
+                            <option value="1">Low</option>
+                            <option value="2">Medium</option>
+                            <option value="3">High</option>
+                            <option value="4">Very High</option>
+                        </select>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn">Predict Performance</button>
+            </form>
+        </section>
+
+        <!-- Result Section -->
+        {% if prediction %}
+        <section class="result-section">
+            <div class="result-card">
+                <h2>Predicted Score: <span>{{ prediction }}</span></h2>
+                <p>Response Time: {{ processing_time }} seconds</p>
+            </div>
+        </section>
+        {% endif %}
+
+        <!-- Chart Section -->
+        {% if chart_path %}
+        <section class="chart-section">
+            <div class="chart-container">
+                <h3>Prediction Chart</h3>
+                <img src="{{ chart_path }}" alt="Prediction Chart">
+            </div>
+        </section>
+        {% endif %}
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Student Performance Prediction System</p>
+    </footer>
+</body>
+</html>
